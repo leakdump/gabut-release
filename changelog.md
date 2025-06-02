@@ -3,7 +3,7 @@ layout: default
 title: Gabut Changelog
 ---
 
-## Gabut v1.0.5-b
+## Gabut v1.0.6
 
 Released on 2025-06-02
 
