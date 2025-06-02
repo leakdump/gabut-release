@@ -3,18 +3,20 @@ layout: default
 title: Gabut Changelog
 ---
 
-## Gabut v1.0.7
+## Gabut v1.0.8
 
 Released on 2025-06-02
+
+### 🐛 Bug Fixes
+
+- fix ldflag
 
 ### 📋 All Changes
 
 <details>
 <summary>View all changes</summary>
 
-- pass all version variables (39e1852)
-- pass all version variables (1816840)
-- pass all version variables (1d840c6)
+- fix ldflag (43d05f5)
 </details>
 
 ## Quick Installation
