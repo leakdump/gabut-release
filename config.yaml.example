@@ -1,0 +1,323 @@
+# Gabut Configuration File
+
+# General Settings
+timeout: 10           # Connection timeout in seconds
+threads: 50           # Number of concurrent threads
+user_agent: "Gabut/1.0"
+
+# Port Configuration
+# Combined list of all ports to scan
+ports:
+  - 21    # FTP
+  - 22    # SSH
+  - 23    # Telnet
+  - 25    # SMTP
+  - 53    # DNS
+  - 80    # HTTP
+  - 110   # POP3
+  - 135   # RPC
+  - 139   # NetBIOS
+  - 143   # IMAP
+  - 443   # HTTPS
+  - 993   # IMAPS
+  - 995   # POP3S
+  - 1723  # PPTP
+  - 3306  # MySQL
+  - 3389  # RDP
+  - 5432  # PostgreSQL
+  - 5900  # VNC
+  - 8080  # HTTP-Alt
+  - 8443  # HTTPS-Alt
+  - 8000  # HTTP-Alt
+  - 8888  # HTTP-Alt
+  - 9000  # HTTP-Alt
+  - 9090  # HTTP-Alt
+
+# DNS Resolvers
+resolvers:
+  - "8.8.8.8"
+  - "1.1.1.1"
+
+# CertStream Configuration
+certstream:
+  enabled: true
+  url: "wss://ct.debian.so"
+  auto_scan: true
+
+  # Keywords to filter domains (empty = monitor all)
+  keywords:
+    - "api"
+    - "dev"
+    - "staging"
+    - "test"
+    - "admin"
+    - "internal"
+    - "coin"
+    - "finance"
+    - "token"
+    - "crypto"
+    - "trading"
+    - "blockchain"
+    - "wallet"
+    - "exchange"
+    - "payment"
+    - "transaction"
+
+  # Whitelist domains (empty = allow all)
+  whitelist: []
+
+  # Blacklist domains to skip
+  blacklist:
+    - "cloudflaressl.com"
+    - "googleapis.com"
+    - "gstatic.com"
+    - "amazonaws.com"
+    - "azure.com"
+    - "microsoft.com"
+    - "apple.com"
+    - "google.com"
+    - "facebook.com"
+    - "remotewd.com"
+    - "workers.dev"
+    - "netlify.app"
+    - "vercel.app"
+    - "heroku.com"
+    - "herokuapp.com"
+    - "github.io"
+    - "gitlab.io"
+    - "cloudfront.net"
+    - "akamaiedge.net"
+    - "azurewebsites.net"
+    - "digitaloceanspaces.com"
+    - "firebaseapp.com"
+    - "s3.amazonaws.com"
+    - "blob.core.windows.net"
+    - "cdn.shopify.com"
+    - "squarespace.com"
+    - "wixsite.com"
+    - "wordpress.com"
+    - "wpengine.com"
+    - "fastly.net"
+    - "algolia.net"
+    - "cloudflare.net"
+    - "ngrok.io"
+    - "glitch.me"
+    - "pages.dev"
+    - "render.com"
+    - "fly.dev"
+    - "onrender.com"
+    - "appspot.com"
+    - "surge.sh"
+    - "repl.co"
+    - "deta.dev"
+    - "cdn77.org"
+    - "railway.app"
+    - "linode.com"
+    - "vultr.com"
+    - "ovh.net"
+    - "rackspace.com"
+    - "scaleway.com"
+    - "hetzner.com"
+    - "upcloud.com"
+    - "digitalocean.com"
+    - "akamai.net"
+    - "edgecast.com"
+    - "lumen.com"
+    - "incapsula.com"
+    - "imperva.com"
+    - "salesforce.com"
+    - "zendesk.com"
+    - "freshdesk.com"
+    - "hubspot.com"
+    - "mailchimp.com"
+    - "sendgrid.net"
+    - "mandrill.com"
+    - "postmarkapp.com"
+    - "mailgun.com"
+    - "twilio.com"
+    - "auth0.com"
+    - "okta.com"
+    - "onelogin.com"
+    - "pingidentity.com"
+    - "adobe.com"
+    - "typekit.net"
+    - "adobedtm.com"
+    - "segment.com"
+    - "hotjar.com"
+    - "googletagmanager.com"
+    - "jsdelivr.net"
+    - "unpkg.com"
+    - "cdnjs.com"
+    - "bootstrapcdn.com"
+    - "jquery.com"
+    - "gravatar.com"
+    - "disqus.com"
+    - "intercom.io"
+    - "zendesk.com"
+    - "zopim.com"
+    - "optimizely.com"
+    - "launchdarkly.com"
+    - "stripe.com"
+    - "paypal.com"
+    - "braintree.com"
+    - "adyen.com"
+    - "square.com"
+    - "zscaler.net"
+    - "stackpath.com"
+    - "maxcdn.com"
+    - "cloudinary.com"
+    - "imgix.net"
+    - "flickr.com"
+    - "spotify.com"
+    - "youtube.com"
+    - "vimeo.com"
+    - "twitter.com"
+    - "linkedin.com"
+    - "instagram.com"
+    - "pinterest.com"
+    - "reddit.com"
+    - "tiktok.com"
+    - "snapchat.com"
+    - "slack.com"
+    - "teams.microsoft.com"
+    - "zoom.us"
+    - "atlassian.net"
+    - "jira.com"
+    - "bitbucket.org"
+    - "gitlab.com"
+    - "github.com"
+    - "npmjs.com"
+    - "pypi.org"
+    - "nuget.org"
+    - "maven.org"
+    - "docker.com"
+    - "docker.io"
+    - "kubernetes.io"
+    - "helm.sh"
+    - "terraform.io"
+    - "hashicorp.com"
+    - "newrelic.com"
+    - "datadog.com"
+    - "dynatrace.com"
+    - "solarwinds.com"
+    - "pingdom.com"
+    - "loggly.com"
+    - "splunk.com"
+    - "elastic.co"
+    - "mongodb.com"
+    - "redis.io"
+    - "mysql.com"
+    - "postgresql.org"
+    - "graphql.org"
+    - "amazonaws.cn"
+    - "apple-dns.net"
+    - "azureedge.net"
+    - "box.com"
+    - "dropbox.com"
+    - "onedrive.com"
+    - "googledrive.com"
+    - "icloud.com"
+    - "secureaccessfed.cisco"
+    - ".dynamics.com"
+    - ".microsoft-int.com"
+    - ".int-azure-api.net"
+    - ".azure-api.net"
+    - ".azure-mobile.net"
+    - ".azure-apim.net"
+    - ".windows.net"
+    - "azurecontainerapps.io"
+    - "meraki.direct"
+    - "salesforce.com"
+    - "salesforce-experience.com"
+    - ".chinacloudapi.cn"
+    - ".ondemand.com"
+    - ".comcast.net"
+    - "stripe-terminal-local-reader.net"
+    - ".sberbank."
+    - ".avito."
+
+# Vulnerability Scanner Configuration
+vulnerability:
+  enabled: true                # Enable vulnerability scanning (can be overridden with --vuln/-v flag)
+  templates_dir: "templates"   # Directory containing custom vulnerability templates (can be overridden with --templates/-t flag)
+
+# GeoIP Configuration
+geoip:
+  enabled: true                # Enable GeoIP functionality
+  auto_download: true          # Automatically download databases if not found
+  database_dir: "data/geoip"   # Directory to store database files
+  update_interval: 168h        # Check for updates every week (168h = 7 days)
+  cache_ttl: 24h               # Time to cache lookup results
+
+# Notification Configuration
+notifications:
+  enabled: true                # Enable notifications
+
+  # Telegram notifications
+  telegram:
+    enabled: false
+    botToken: "YOUR_BOT_TOKEN"
+    chatID: "YOUR_CHAT_ID"
+
+  # Discord notifications
+  discord:
+    enabled: false
+    webhookURL: "https://discord.com/api/webhooks/YOUR_WEBHOOK_URL"
+    username: "Gabut Bot"
+    avatarURL: "https://example.com/gabut-icon.png"
+
+  # Slack notifications
+  slack:
+    enabled: false
+    webhookURL: "https://hooks.slack.com/services/YOUR_WEBHOOK_URL"
+    channel: "#security-alerts"
+    username: "Gabut"
+    iconURL: "https://example.com/gabut-icon.png"
+
+  # Generic webhook notifications
+  webhook:
+    enabled: false
+    url: "https://your-webhook-endpoint.com/hook"
+    method: "POST"
+    headers:
+      Content-Type: "application/json"
+      Authorization: "Bearer YOUR_API_KEY"
+
+  # Email notifications
+  email:
+    enabled: false
+    smtp: "smtp.gmail.com"
+    port: 587
+    username: "your-email@gmail.com"
+    password: "your-app-password"
+    from: "gabut-alerts@yourdomain.com"
+    to:
+      - "security-team@yourdomain.com"
+      - "admin@yourdomain.com"
+    subject: "Gabut Security Alert"
+
+  # Notification filters
+  filters:
+    minSeverity: "low"           # Minimum severity for vulnerability alerts (critical, high, medium, low, info)
+    excludeDomains:              # Domains to exclude from notifications
+      - "test-environment.com"
+      - "dev.internal.company.com"
+    excludeIPs:                  # IPs to exclude from notifications
+      - "192.168.1.0/24"
+      - "10.0.0.0/8"
+    includeKeywords:             # Only notify if these keywords match (empty = notify all)
+      - "prod"
+      - "api"
+      - "payment"
+    excludeKeywords:             # Don't notify if these keywords match
+      - "test"
+      - "staging"
+    notifyNewDomains: false       # Notify on new domain discoveries
+    notifyRecon: false            # Notify on reconnaissance results
+    notifyVulns: true            # Notify on vulnerability findings
+
+# Output Configuration
+output:
+  format: "console"            # Output format: console, json, yaml (can be overridden with --format/-f flag)
+  file: ""                     # Output file path (empty = stdout) (can be overridden with --output/-o flag)
+  verbose: false               # Enable verbose output (can be overridden with --verbose/-V flag)

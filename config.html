@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gabut Configuration Example</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+    }
+    .config-section {
+      background-color: #f9f9f9;
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 30px;
+    }
+    pre {
+      background-color: #f1f1f1;
+      padding: 15px;
+      border-radius: 5px;
+      overflow-x: auto;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+    code {
+      font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+    }
+    .button {
+      display: inline-block;
+      background-color: #4a76b8;
+      color: white;
+      padding: 10px 15px;
+      text-decoration: none;
+      border-radius: 4px;
+      font-weight: bold;
+      margin-top: 10px;
+    }
+    .button:hover {
+      background-color: #3a5a8f;
+    }
+    .navigation {
+      margin-bottom: 30px;
+    }
+    footer {
+      margin-top: 50px;
+      text-align: center;
+      color: #666;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="navigation">
+    <a href="index.html" class="button">Back to Downloads</a>
+  </div>
+
+  <h1>Gabut Configuration Example</h1>
+
+  <div class="config-section">
+    <p>This is an example configuration file for Gabut. You can download it and modify it according to your needs.</p>
+    <a href="https://github.com/leakdump/gabut-release/releases/download/latest/config.yaml.example" class="button">Download Config Example</a>
+
+    <h2>Configuration Content</h2>
+    <pre><code id="config-content">Loading configuration...</code></pre>
+  </div>
+
+  <footer>
+    <p>Gabut v1.0.4-a | <a href="https://github.com/leakdump/gabut-release/releases">View All Releases</a></p>
+  </footer>
+
+  <script>
+    // Fetch and display the config file content
+    fetch('config.yaml.example')
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('config-content').textContent = data;
+      })
+      .catch(error => {
+        document.getElementById('config-content').textContent = 'Error loading configuration: ' + error;
+      });
+  </script>
+</body>
+</html>
