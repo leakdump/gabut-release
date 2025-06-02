@@ -3,17 +3,20 @@ layout: default
 title: Gabut Changelog
 ---
 
-## Gabut v1.0.5
+## Gabut v1.0.5-a
 
 Released on 2025-06-02
+
+### 🐛 Bug Fixes
+
+- fix raw
 
 ### 📋 All Changes
 
 <details>
 <summary>View all changes</summary>
 
-- Enhanced Notification System (c6a19a6)
-- Enhanced Notification System (2e48902)
+- fix raw (0989f7a)
 </details>
 
 ## Quick Installation
