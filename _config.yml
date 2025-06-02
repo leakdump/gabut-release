@@ -1,0 +1,7 @@
+title: Gabut Downloads
+description: Download the Gabut reconnaissance tool for your platform
+theme: jekyll-theme-cayman
+show_downloads: false
+github:
+  is_project_page: true
+  repository_url: https://github.com/leakdump/gabut-release
