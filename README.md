@@ -4,7 +4,7 @@ This repository hosts releases of the Gabut reconnaissance tool.
 
 ## Latest Release
 
-The latest release is [v1.0.5-b](https://github.com/leakdump/gabut-release/releases/tag/v1.0.5-b).
+The latest release is [v1.0.6](https://github.com/leakdump/gabut-release/releases/tag/v1.0.6).
 
 ## Download
 
