@@ -283,18 +283,6 @@ notifications:
       Content-Type: "application/json"
       Authorization: "Bearer YOUR_API_KEY"
 
-  # Email notifications
-  email:
-    enabled: false
-    smtp: "smtp.gmail.com"
-    port: 587
-    username: "your-email@gmail.com"
-    password: "your-app-password"
-    from: "gabut-alerts@yourdomain.com"
-    to:
-      - "security-team@yourdomain.com"
-      - "admin@yourdomain.com"
-    subject: "Gabut Security Alert"
 
   # Notification filters
   filters:
