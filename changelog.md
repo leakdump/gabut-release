@@ -3,20 +3,18 @@ layout: default
 title: Gabut Changelog
 ---
 
-## Gabut v1.0.6
+## Gabut v1.0.7
 
 Released on 2025-06-02
-
-### 🐛 Bug Fixes
-
-- fix contentType
 
 ### 📋 All Changes
 
 <details>
 <summary>View all changes</summary>
 
-- fix contentType (d5a0a9a)
+- pass all version variables (39e1852)
+- pass all version variables (1816840)
+- pass all version variables (1d840c6)
 </details>
 
 ## Quick Installation
