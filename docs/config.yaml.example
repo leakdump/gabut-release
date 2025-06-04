@@ -1,9 +1,9 @@
-# Gabut Configuration File
+# Gabut Security Reconnaissance Tool Configuration
 
 # General Settings
 timeout: 10           # Connection timeout in seconds
 threads: 50           # Number of concurrent threads
-user_agent: "Gabut/1.0"
+user_agent: "Mozilla/5.0 (compatible; Gabut/1.0; +https://github.com/yourusername/gabut)"
 
 # Port Configuration
 # Combined list of all ports to scan
@@ -28,23 +28,77 @@ ports:
   - 5900  # VNC
   - 8080  # HTTP-Alt
   - 8443  # HTTPS-Alt
-  - 8000  # HTTP-Alt
-  - 8888  # HTTP-Alt
-  - 9000  # HTTP-Alt
-  - 9090  # HTTP-Alt
 
-# DNS Resolvers
+# DNS Resolvers - used for hostname to IP resolution
 resolvers:
-  - "8.8.8.8"
-  - "1.1.1.1"
-  - "9.9.9.9"
-  - "208.67.222.222"
+  - "8.8.8.8"    # Google DNS
+  - "1.1.1.1"    # Cloudflare
+  - "9.9.9.9"    # Quad9
+  - "208.67.222.222"  # OpenDNS
 
-# CertStream Configuration
+# HTTP Scanner Configuration
+http_scanner:
+  follow_redirects: true
+  max_redirects: 5
+  timeout: 10
+  connection_timeout: 5
+  headers:
+    User-Agent: "Mozilla/5.0 (compatible; Gabut/1.0; +https://github.com/yourusername/gabut)"
+    Accept: "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8"
+    Accept-Language: "en-US,en;q=0.5"
+  max_body_size: 1048576  # 1MB
+  enable_cache: true
+  cache_ttl: 3600  # 1 hour in seconds
+  disable_keep_alive: false
+  idle_conn_timeout: 30
+  probe_unknown_ports: true
+  web_ports:
+    - 80
+    - 443
+    - 8080
+    - 8443
+    - 3000
+    - 8000
+    - 8888
+    - 9000
+    - 9090
+    - 9443
+
+# Port Scanner Configuration
+port_scanner:
+  timeout: 5
+  threads: 100
+  scan_delay: 0       # Delay between port scans in milliseconds (0 = no delay)
+  banner_timeout: 3   # Banner grabbing timeout in seconds
+  retries: 2          # Number of retries for failed connections
+  scan_method: "syn"  # Scan method: syn, connect, fin
+  enable_cache: true
+  cache_ttl: 1800     # 30 minutes
+  smart_scan: true    # Use adaptive scanning techniques
+  default_ports:      # Default ports to scan if not specified
+    - 80
+    - 443
+    - 8080
+    - 8443
+
+# Fingerprinting Configuration - used to detect web technologies, CDNs, WAFs
+fingerprints:
+  enabled: true
+  web_technology_detection: true
+  cdn_detection: true
+  waf_detection: true
+  server_detection: true
+  cache_ttl: 3600     # Cache fingerprinting results for 1 hour
+  update_signatures: true
+  update_interval: 168h  # Check for signature updates weekly
+  signature_path: "data/signatures"
+  confidence_threshold: 70  # Minimum confidence percentage to report a match
+
+# CertStream Configuration - for monitoring new SSL certificates
 certstream:
   enabled: true
-  url: "wss://ct.debian.so"
-  auto_scan: true
+  url: "wss://ct.debian.so"  # CertStream websocket endpoint
+  auto_scan: true           # Automatically scan new domains
 
   # Keywords to filter domains (empty = monitor all)
   keywords:
@@ -54,16 +108,12 @@ certstream:
     - "test"
     - "admin"
     - "internal"
-    - "coin"
     - "finance"
-    - "token"
-    - "crypto"
-    - "trading"
-    - "blockchain"
-    - "wallet"
-    - "exchange"
     - "payment"
-    - "transaction"
+    - "secure"
+    - "auth"
+    - "login"
+    - "user"
 
   # Whitelist domains (empty = allow all)
   whitelist: []
@@ -73,207 +123,75 @@ certstream:
     - "cloudflaressl.com"
     - "googleapis.com"
     - "gstatic.com"
-    - "amazonaws.com"
-    - "azure.com"
-    - "microsoft.com"
-    - "apple.com"
-    - "google.com"
-    - "facebook.com"
-    - "remotewd.com"
-    - "workers.dev"
-    - "netlify.app"
-    - "vercel.app"
-    - "heroku.com"
-    - "herokuapp.com"
-    - "github.io"
-    - "gitlab.io"
-    - "cloudfront.net"
-    - "akamaiedge.net"
-    - "azurewebsites.net"
-    - "digitaloceanspaces.com"
-    - "firebaseapp.com"
-    - "s3.amazonaws.com"
-    - "blob.core.windows.net"
-    - "cdn.shopify.com"
-    - "squarespace.com"
-    - "wixsite.com"
-    - "wordpress.com"
-    - "wpengine.com"
-    - "fastly.net"
-    - "algolia.net"
-    - "cloudflare.net"
-    - "ngrok.io"
-    - "glitch.me"
-    - "pages.dev"
-    - "render.com"
-    - "fly.dev"
-    - "onrender.com"
-    - "appspot.com"
-    - "surge.sh"
-    - "repl.co"
-    - "deta.dev"
-    - "cdn77.org"
-    - "railway.app"
-    - "linode.com"
-    - "vultr.com"
-    - "ovh.net"
-    - "rackspace.com"
-    - "scaleway.com"
-    - "hetzner.com"
-    - "upcloud.com"
-    - "digitalocean.com"
-    - "akamai.net"
-    - "edgecast.com"
-    - "lumen.com"
-    - "incapsula.com"
-    - "imperva.com"
-    - "salesforce.com"
-    - "zendesk.com"
-    - "freshdesk.com"
-    - "hubspot.com"
-    - "mailchimp.com"
-    - "sendgrid.net"
-    - "mandrill.com"
-    - "postmarkapp.com"
-    - "mailgun.com"
-    - "twilio.com"
-    - "auth0.com"
-    - "okta.com"
-    - "onelogin.com"
-    - "pingidentity.com"
-    - "adobe.com"
-    - "typekit.net"
-    - "adobedtm.com"
-    - "segment.com"
-    - "hotjar.com"
-    - "googletagmanager.com"
-    - "jsdelivr.net"
-    - "unpkg.com"
-    - "cdnjs.com"
-    - "bootstrapcdn.com"
-    - "jquery.com"
-    - "gravatar.com"
-    - "disqus.com"
-    - "intercom.io"
-    - "zendesk.com"
-    - "zopim.com"
-    - "optimizely.com"
-    - "launchdarkly.com"
-    - "stripe.com"
-    - "paypal.com"
-    - "braintree.com"
-    - "adyen.com"
-    - "square.com"
-    - "zscaler.net"
-    - "stackpath.com"
-    - "maxcdn.com"
-    - "cloudinary.com"
-    - "imgix.net"
-    - "flickr.com"
-    - "spotify.com"
-    - "youtube.com"
-    - "vimeo.com"
-    - "twitter.com"
-    - "linkedin.com"
-    - "instagram.com"
-    - "pinterest.com"
-    - "reddit.com"
-    - "tiktok.com"
-    - "snapchat.com"
-    - "slack.com"
-    - "teams.microsoft.com"
-    - "zoom.us"
-    - "atlassian.net"
-    - "jira.com"
-    - "bitbucket.org"
-    - "gitlab.com"
-    - "github.com"
-    - "npmjs.com"
-    - "pypi.org"
-    - "nuget.org"
-    - "maven.org"
-    - "docker.com"
-    - "docker.io"
-    - "kubernetes.io"
-    - "helm.sh"
-    - "terraform.io"
-    - "hashicorp.com"
-    - "newrelic.com"
-    - "datadog.com"
-    - "dynatrace.com"
-    - "solarwinds.com"
-    - "pingdom.com"
-    - "loggly.com"
-    - "splunk.com"
-    - "elastic.co"
-    - "mongodb.com"
-    - "redis.io"
-    - "mysql.com"
-    - "postgresql.org"
-    - "graphql.org"
-    - "amazonaws.cn"
-    - "apple-dns.net"
-    - "azureedge.net"
-    - "box.com"
-    - "dropbox.com"
-    - "onedrive.com"
-    - "googledrive.com"
-    - "icloud.com"
-    - "secureaccessfed.cisco"
-    - ".dynamics.com"
-    - ".microsoft-int.com"
-    - ".int-azure-api.net"
-    - ".azure-api.net"
-    - ".azure-mobile.net"
-    - ".azure-apim.net"
-    - ".windows.net"
-    - "azurecontainerapps.io"
-    - "meraki.direct"
-    - "salesforce.com"
-    - "salesforce-experience.com"
-    - ".chinacloudapi.cn"
-    - ".ondemand.com"
-    - ".comcast.net"
-    - "stripe-terminal-local-reader.net"
-    - ".sberbank."
-    - ".avito."
 
 # Vulnerability Scanner Configuration
 vulnerability:
-  enabled: true                # Enable vulnerability scanning (can be overridden with --vuln/-v flag)
-  templates_dir: "templates"   # Directory containing custom vulnerability templates (can be overridden with --templates/-t flag)
+  enabled: true
+  templates_dir: "templates"    # Directory containing vulnerability templates
+  concurrent_scans: 10         # Number of concurrent vulnerability scans
+  timeout: 15                  # Timeout for vulnerability scans in seconds
 
-# GeoIP Configuration
+  # Include specific templates (empty = use all)
+  templates: []
+
+  # Skip these template IDs
+  skip_templates:
+    - "dos-template"
+    - "slow-loris"
+
+  # Risk levels to include
+  risk_levels:
+    - "critical"
+    - "high"
+    - "medium"
+    - "low"
+    - "info"
+
+  # Include specific tags (empty = use all)
+  tags: []
+
+  # Skip these vulnerability tags
+  skip_tags:
+    - "dos"
+    - "fuzz"
+
+  skip_authors:
+    - "blackhat-author"
+
+  max_hosts_per_template: 100   # Maximum hosts to scan per template
+  auto_update_templates: true   # Automatically update templates
+
+# GeoIP Configuration - for IP geolocation
 geoip:
-  enabled: true                # Enable GeoIP functionality
-  auto_download: true          # Automatically download databases if not found
-  database_dir: "data/geoip"   # Directory to store database files
+  enabled: true
+  auto_download: true          # Automatically download GeoIP databases if not found
+  database_dir: "data/geoip"   # Directory for GeoIP databases
   update_interval: 168h        # Check for updates every week (168h = 7 days)
   cache_ttl: 24h               # Time to cache lookup results
 
 # Notification Configuration
 notifications:
-  enabled: true                # Enable notifications
+  enabled: true
 
   # Telegram notifications
   telegram:
     enabled: false
-    botToken: "YOUR_BOT_TOKEN"
-    chatID: "YOUR_CHAT_ID"
+    botToken: ""    # Get from BotFather
+    chatID: ""      # Chat ID to send notifications to
 
   # Discord notifications
   discord:
     enabled: false
-    webhookURL: "https://discord.com/api/webhooks/YOUR_WEBHOOK_URL"
-    username: "Gabut Bot"
+    webhookURL: ""
+    username: "Gabut Security Bot"
     avatarURL: "https://example.com/gabut-icon.png"
 
   # Slack notifications
   slack:
     enabled: false
-    webhookURL: "https://hooks.slack.com/services/YOUR_WEBHOOK_URL"
+    webhookURL: ""
     channel: "#security-alerts"
-    username: "Gabut"
+    username: "Gabut Security"
     iconURL: "https://example.com/gabut-icon.png"
 
   # Generic webhook notifications
@@ -285,29 +203,59 @@ notifications:
       Content-Type: "application/json"
       Authorization: "Bearer YOUR_API_KEY"
 
-
   # Notification filters
   filters:
-    minSeverity: "low"           # Minimum severity for vulnerability alerts (critical, high, medium, low, info)
-    excludeDomains:              # Domains to exclude from notifications
+    minSeverity: "low"       # Minimum severity for vulnerability alerts (critical, high, medium, low, info)
+    excludeDomains:          # Domains to exclude from notifications
       - "test-environment.com"
       - "dev.internal.company.com"
-    excludeIPs:                  # IPs to exclude from notifications
+    excludeIPs:              # IPs to exclude from notifications
       - "192.168.1.0/24"
       - "10.0.0.0/8"
-    includeKeywords:             # Only notify if these keywords match (empty = notify all)
+    includeKeywords:         # Only notify if these keywords match (empty = notify all)
       - "prod"
       - "api"
       - "payment"
-    excludeKeywords:             # Don't notify if these keywords match
+    excludeKeywords:         # Don't notify if these keywords match
       - "test"
       - "staging"
-    notifyNewDomains: false       # Notify on new domain discoveries
-    notifyRecon: false            # Notify on reconnaissance results
-    notifyVulns: true            # Notify on vulnerability findings
+    notifyNewDomains: false   # Notify on new domain discoveries
+    notifyRecon: false        # Notify on reconnaissance results
+    notifyVulns: true        # Notify on vulnerability findings
+
+    # Rate limiting settings
+    rateLimiting:
+      enabled: false
+      maxPerHour: 60         # Maximum notifications per hour
+      maxPerDay: 500         # Maximum notifications per day
+      cooldownPeriod: 5m     # Minimum time between identical notifications
+
+# Resolver Configuration - DNS resolution settings
+resolver:
+  cache_size: 10000          # Maximum number of cached DNS resolutions
+  cache_ttl: 3600            # Cache time-to-live in seconds
+  retries: 3                 # Number of retries for failed DNS lookups
+  timeout: 5                 # Timeout for DNS queries in seconds
+  max_concurrent: 100        # Maximum concurrent DNS queries
+  verify_ssl: true           # Verify SSL certificates
+  use_edns: true             # Use EDNS for DNS queries
+  edns_client_subnet: "0.0.0.0/0"  # EDNS client subnet
 
 # Output Configuration
 output:
-  format: "console"            # Output format: console, json, yaml (can be overridden with --format/-f flag)
-  file: ""                     # Output file path (empty = stdout) (can be overridden with --output/-o flag)
-  verbose: false               # Enable verbose output (can be overridden with --verbose/-V flag)
+  format: "console"             # Output format: json, yaml, csv, console
+  file: "" # Output file path
+  verbose: true              # Enable verbose output
+  log_level: "info"          # Log level: debug, info, warning, error
+  log_file: "gabut.log"      # Log file path
+  include_timestamps: true   # Include timestamps in output
+  pretty_print: true         # Pretty print JSON/YAML output
+
+# Advanced Configuration
+advanced:
+  max_memory: "1G"           # Maximum memory usage
+  cpu_profile: ""            # CPU profile output file
+  mem_profile: ""            # Memory profile output file
+  debug_mode: false          # Enable debug mode
+  development_mode: false    # Enable development mode
+  disable_update_check: false # Disable update check
