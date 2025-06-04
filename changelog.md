@@ -3,43 +3,45 @@ layout: default
 title: Gabut Changelog
 ---
 
-## Gabut v1.1.0-a
+## Gabut v1.1.0-b
 
 Released on 2025-06-04
 
-### 🚀 New Features
-
-- add some pkg
-
 ### 🐛 Bug Fixes
 
-- fixing attack method
-- fixing attack method
+- fix
+- fix
 - fixing attack method
 
 ### ⚡ Improvements
 
-- refactor logging
-- refactor logging
-- refactor logging
-- refactor logger
+- refactor asdxc
+- refactor asdx
+- refactor asdx
+- refactor asdx
+- refactor asd
+- refactor notifikasi,scanner
+- refactor notifikasi
+- refactor configuration
 
 ### 📋 All Changes
 
 <details>
 <summary>View all changes</summary>
 
-- fixing attack method (a0b74c3)
-- fixing attack method (6e32982)
-- fixing attack method (92acfee)
-- refactor logging (69e59f9)
-- refactor logging (98958c9)
-- refactor logging (991b287)
-- refactor logger (813b9e7)
-- add some pkg (7e170f9)
-- modify template (43c55ce)
-- aaa (f2c082e)
-- bb (8b9ce45)
+- fix (7b730c3)
+- fix (073de5f)
+- MaxCombinationPerTemplate (9e9e4c0)
+- MaxCombinationPerTemplate (c0821ac)
+- refactor asdxc (a035942)
+- refactor asdx (c3aa1c0)
+- refactor asdx (bf9bfd8)
+- refactor asdx (12329e0)
+- refactor asd (46f4bf2)
+- refactor notifikasi,scanner (0f4d481)
+- refactor notifikasi (be79dd0)
+- refactor configuration (bb1ea1e)
+- fixing attack method (e0dbe49)
 </details>
 
 ## Quick Installation
