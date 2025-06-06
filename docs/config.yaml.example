@@ -2,7 +2,7 @@
 
 # General Settings
 timeout: 10           # Connection timeout in seconds
-threads: 50           # Number of concurrent threads
+threads: 25           # Number of concurrent threads
 user_agent: "Mozilla/5.0 (compatible; Gabut/1.0; +https://github.com/yourusername/gabut)"
 
 # Port Configuration
@@ -105,7 +105,6 @@ certstream:
     - "api"
     - "dev"
     - "staging"
-    - "test"
     - "admin"
     - "internal"
     - "finance"
