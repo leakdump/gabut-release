@@ -75,7 +75,7 @@ port_scanner:
   enable_cache: true
   cache_ttl: 1800     # 30 minutes
   smart_scan: true    # Use adaptive scanning techniques
-  default_ports:      # Default ports to scan if not specified
+  default_ports: # Default ports to scan if not specified
     - 80
     - 443
     - 8080
@@ -114,14 +114,20 @@ certstream:
     - "login"
     - "user"
 
-  # Whitelist domains (empty = allow all)
-  whitelist: []
-
-  # Blacklist domains to skip
+    # Whitelist domains (empty = allow all)
+    # Whitelist domains to include (only these will be processed if non-empty)
+    # You can use string matches or regex patterns (enclosed in / /)
+  whitelist:
+    - example.com
+    - "/^(api|dev)\.mycompany\.com$/"
+    # Blacklist domains to exclude
+    # You can use string matches or regex patterns (enclosed in / /)
   blacklist:
-    - "cloudflaressl.com"
-    - "googleapis.com"
-    - "gstatic.com"
+    - cloudflaressl.com
+    - googleapis.com
+    - gstatic.com
+    - "/^.*\.internal\.local$/"
+    - "/^(test|staging)\\d+\\.example\\.org$/"
 
 # Vulnerability Scanner Configuration
 vulnerability:
@@ -131,7 +137,7 @@ vulnerability:
   timeout: 15                  # Timeout for vulnerability scans in seconds
 
   # Include specific templates (empty = use all)
-  templates: []
+  templates: [ ]
 
   # Skip these template IDs
   skip_templates:
@@ -147,7 +153,7 @@ vulnerability:
     - "info"
 
   # Include specific tags (empty = use all)
-  tags: []
+  tags: [ ]
 
   # Skip these vulnerability tags
   skip_tags:
@@ -205,17 +211,17 @@ notifications:
   # Notification filters
   filters:
     minSeverity: "low"       # Minimum severity for vulnerability alerts (critical, high, medium, low, info)
-    excludeDomains:          # Domains to exclude from notifications
+    excludeDomains: # Domains to exclude from notifications
       - "test-environment.com"
       - "dev.internal.company.com"
-    excludeIPs:              # IPs to exclude from notifications
+    excludeIPs: # IPs to exclude from notifications
       - "192.168.1.0/24"
       - "10.0.0.0/8"
-    includeKeywords:         # Only notify if these keywords match (empty = notify all)
+    includeKeywords: # Only notify if these keywords match (empty = notify all)
       - "prod"
       - "api"
       - "payment"
-    excludeKeywords:         # Don't notify if these keywords match
+    excludeKeywords: # Don't notify if these keywords match
       - "test"
       - "staging"
     notifyNewDomains: false   # Notify on new domain discoveries
