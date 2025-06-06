@@ -3,27 +3,22 @@ layout: default
 title: Gabut Changelog
 ---
 
-## Gabut v1.1.1
+## Gabut v1.1.1-a
 
 Released on 2025-06-06
 
-### 🐛 Bug Fixes
+### 🚀 New Features
 
-- fix ldflags
-- fix
-
-### ⚡ Improvements
-
-- adjust severities and improve docker-compose detection
+- add CVE-2017-9841 detection template for PHPUnit RCE
+- add regex support for whitelist and blacklist in CertStream config
 
 ### 📋 All Changes
 
 <details>
 <summary>View all changes</summary>
 
-- adjust severities and improve docker-compose detection (a466665)
-- fix ldflags (e58b521)
-- fix (cf7fda2)
+- add CVE-2017-9841 detection template for PHPUnit RCE (388d71e)
+- add regex support for whitelist and blacklist in CertStream config (bd35565)
 </details>
 
 ## Quick Installation
